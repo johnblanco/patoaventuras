@@ -57,8 +57,6 @@ function drawMenu() {
 }
 
 function drawMap() {
-  //https://developer.mozilla.org/en-US/docs/HTML/Canvas/Tutorial/Using_images
-//  ctx.drawImage(tileset,33,71,104,124,21,20,87,104);
   clear();
   var sx=0;
   var sy=0;
@@ -71,7 +69,7 @@ function drawMap() {
 
   for(var i=0;i<15;i++){
     for(var j=0;j<20;j++){
-      ctx.drawImage(document.getElementById('tileset'),sx,sy,sWidth,sHeight,dx,dy,dWidth,dHeight);
+      ctx.drawImage(tileset,sx,sy,sWidth,sHeight,dx,dy,dWidth,dHeight);
       dx=dx+32;
     }
     dx=0;
@@ -98,9 +96,17 @@ function initGame() {
   clearInterval(timer);
 
   gamePaused = false;
-  gameStatus = "menu";
-  tileset = $("#tileset");
-  timer = setInterval(update, 30);
+  gameStatus = "playing";
+  tileset = new Image();
+  tileset.src="tileset.png";
+
+  $.getJSON('map_0.json',function(data){
+    tileset.onload = function(){
+      timer = setInterval(update, 30);
+    };
+  });
+
+
 }
 
 $(document).ready(function () {
