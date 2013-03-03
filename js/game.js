@@ -2,13 +2,14 @@
 //jquery local: jquery-1.7.2.js
 
 var ctx;
-var canvas_height;
-var canvas_width;
+var canvasHeight;
+var canvasWidth;
 var keyboardState;
 var timer;
 var gameStatus;
 var gamePaused;
 var tileset;
+var map;
 
 function rectanglesCollide(pos1, width1, height1, pos2, width2, height2) {
   var left1 = pos1.x;
@@ -28,27 +29,8 @@ function rectanglesCollide(pos1, width1, height1, pos2, width2, height2) {
   }
 }
 
-function debugInfo() {
-  var textY = 300;
-  $.each(snake.pieces, function (index, value) {
-    ctx.fillText(value.pos.x + " , " + value.pos.y, 540, textY);
-    textY += 20;
-  });
-
-  textY = 300;
-  $.each(snake.corners, function (index, value) {
-    ctx.fillText(value.pos.x + " , " + value.pos.y, 590, textY);
-    textY += 20;
-  });
-}
-
 function clear() {
-  ctx.clearRect(0, 0, canvas_width, canvas_height);
-}
-
-function drawPlaying() {
-  clear();
-  drawMap();
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 }
 
 function drawMenu() {
@@ -56,25 +38,12 @@ function drawMenu() {
   ctx.fillText(START_GAME, 50, 50);
 }
 
-function drawMap() {
+function drawPlaying() {
   clear();
-  var sx=0;
-  var sy=0;
-  var sWidth=32;
-  var sHeight=32;
-  var dx=0;
-  var dy=0;
-  var dWidth=32;
-  var dHeight=32;
 
-  for(var i=0;i<15;i++){
-    for(var j=0;j<20;j++){
-      ctx.drawImage(tileset,sx,sy,sWidth,sHeight,dx,dy,dWidth,dHeight);
-      dx=dx+32;
-    }
-    dx=0;
-    dy=dy+32;
-  }
+  map.render(new Vector(0,0));
+  //aca abajo iria: player.render();
+
 }
 
 function update() {
@@ -85,7 +54,7 @@ function update() {
         gameStatus = "playing";
       break;
     case "playing":
-      drawMap();
+      drawPlaying();
       break;
   }
 }
@@ -100,7 +69,9 @@ function initGame() {
   tileset = new Image();
   tileset.src="tileset.png";
 
+
   $.getJSON('map_0.json',function(data){
+    map = new Map(data);
     tileset.onload = function(){
       timer = setInterval(update, 30);
     };
@@ -143,8 +114,8 @@ $(document).ready(function () {
 
   ctx = $('#canvas')[0].getContext("2d");
   ctx.font = "16pt Arial";
-  canvas_width = $("#canvas").attr("width");
-  canvas_height = $("#canvas").attr("height");
+  canvasWidth = $("#canvas").attr("width");
+  canvasHeight = $("#canvas").attr("height");
   initGame();
 
 });
