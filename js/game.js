@@ -65,7 +65,7 @@ function initGame() {
   clearInterval(timer);
 
   gamePaused = false;
-  gameStatus = "playing";
+  gameStatus = "menu";
   tileset = new Image();
   tileset.src="tileset.png";
 

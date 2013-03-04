@@ -2,8 +2,6 @@ var Map = function(mapData){
   this.mapData = mapData;
 
   this.render = function(cameraPosition){
-    var sx=0;
-    var sy=0;
     var sWidth=32;
     var sHeight=32;
     var dx=0;
@@ -12,9 +10,11 @@ var Map = function(mapData){
     var dHeight=32;
     var sourcePosition;
 
+    var cameraTiles = this.cameraTiles(cameraPosition);
+
     for(var i=0;i<15;i++){
       for(var j=0;j<20;j++){
-        sourcePosition = this.tilePositionFromIndex(349);
+        sourcePosition = this.tilePositionFromIndex(cameraTiles[i][j]);
         ctx.drawImage(tileset,sourcePosition.x,sourcePosition.y,sWidth,sHeight,dx,dy,dWidth,dHeight);
         dx=dx+32;
       }
@@ -27,6 +27,21 @@ var Map = function(mapData){
   this.cameraTiles = function(cameraPosition){
     //obtengo los cuadrados del mapa que corresponden a la posicion de la camara
     //y los coloco en una matriz de 20x15
+    var cameraTiles = [[]];
+    var tileIndex= 0;
+    var tileData;
+
+
+    for(var i=0;i<15;i++){
+      for(var j=0;j<20;j++){
+        tileData = this.mapData["layers"][0]["data"][tileIndex];
+        cameraTiles[i][j] = tileData;
+        tileIndex++;
+      }
+      cameraTiles[i][j]=[];
+    }
+
+    return cameraTiles;
   };
 
   this.tilePositionFromIndex = function(index){
