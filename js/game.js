@@ -1,25 +1,17 @@
 //jquery cdn: http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js
 //jquery local: jquery-1.7.2.js
 
-var ctx;
-var canvasHeight;
-var canvasWidth;
-var keyboardState;
 var timer;
-var gameStatus;
-var gamePaused;
-var tileset;
-var map;
 
 function rectanglesCollide(pos1, width1, height1, pos2, width2, height2) {
-  var left1 = pos1.x;
-  var left2 = pos2.x;
-  var top1 = pos1.y;
-  var top2 = pos2.y;
-  var bottom1 = pos1.y + height1;
-  var bottom2 = pos2.y + height2;
-  var right1 = pos1.x + width1;
-  var right2 = pos2.x + width2;
+  left1 = pos1.x;
+  left2 = pos2.x;
+  top1 = pos1.y;
+  top2 = pos2.y;
+  bottom1 = pos1.y + height1;
+  bottom2 = pos2.y + height2;
+  right1 = pos1.x + width1;
+  right2 = pos2.x + width2;
 
   if (bottom1 < top2 || top1 > bottom2 || right1 < left2 || left1 > right2) {
     return false;
@@ -41,8 +33,8 @@ function drawMenu() {
 function drawPlaying() {
   clear();
 
-  map.render(new Vector(0,0));
-  //aca abajo iria: player.render();
+  map.draw(new Vector(0,0));
+  //aca abajo iria: player.draw();
 
 }
 
