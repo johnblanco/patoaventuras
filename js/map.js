@@ -33,12 +33,13 @@ var Map = function(mapData){
 
 
     for(var i=0;i<15;i++){
+      cameraTiles[i]=[];
       for(var j=0;j<20;j++){
         tileData = this.mapData["layers"][0]["data"][tileIndex];
         cameraTiles[i][j] = tileData;
         tileIndex++;
       }
-      cameraTiles[i][j]=[];
+
     }
 
     return cameraTiles;
