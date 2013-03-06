@@ -4,8 +4,6 @@ Map = function(mapData){
   this.draw= function(cameraPosition){
     sWidth=32;
     sHeight=32;
-    dx=0;
-    dy=0;
     dWidth=32;
     dHeight=32;
 
@@ -21,10 +19,14 @@ Map = function(mapData){
   };
 
   this.drawLayer = function(tiles){
+    dx=0;
+    dy=0;
     for(i=0;i<15;i++){
       for(j=0;j<20;j++){
         sourcePosition = this.tilePositionFromIndex(tiles[i][j]);
-        ctx.drawImage(tileset,sourcePosition.x,sourcePosition.y,sWidth,sHeight,dx,dy,dWidth,dHeight);
+        if(tiles[i][j] != 0){
+          ctx.drawImage(tileset,sourcePosition.x,sourcePosition.y,sWidth,sHeight,dx,dy,dWidth,dHeight);
+        }
         dx=dx+32;
       }
       dx=0;
@@ -35,15 +37,17 @@ Map = function(mapData){
   this.layerTiles = function(cameraPosition, layer){
     //obtengo los cuadrados del mapa que corresponden a la posicion de la camara
     //y los coloco en una matriz de 20x15
+
+    //eureka! el ancho de la superficie visible es 20, el ancho de la tira es 40!!!
     tiles = [[]];
     tileIndex= 0;
 
     tiles[layer]=[];
     for(i=0;i<15;i++){
       tiles[i]=[];
+      tileIndex+=40;
       for(j=0;j<20;j++){
-        tileData = this.mapData["layers"][layer]["data"][tileIndex];
-        tiles[i][j] = tileData;
+        tiles[i][j] = this.mapData["layers"][layer]["data"][tileIndex];
         tileIndex++;
       }
     }
