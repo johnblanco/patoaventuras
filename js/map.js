@@ -9,11 +9,14 @@ Map = function(mapData){
     dWidth=32;
     dHeight=32;
 
-    background = this.background(cameraPosition, 0);
-    objects = this.background(cameraPosition, 1);
+    background = this.layerTiles(cameraPosition, 0);
+    objects = this.layerTiles(cameraPosition, 1);
 
-    this.drawLayer(objects);//TODO: por que no esta dibujando una cosa sobre la otra?
-    this.drawLayer(background);//TODO: por que el layer de los objetos tiene lineas blancas?
+    //TODO: por que no esta dibujando una cosa sobre la otra?
+    //TODO: por que el layer de los objetos tiene lineas blancas?
+
+    this.drawLayer(objects);
+//    this.drawLayer(background);
 
   };
 
@@ -29,22 +32,22 @@ Map = function(mapData){
     }
   };
 
-  this.background = function(cameraPosition, layer){
+  this.layerTiles = function(cameraPosition, layer){
     //obtengo los cuadrados del mapa que corresponden a la posicion de la camara
     //y los coloco en una matriz de 20x15
-    background = [[]];
+    tiles = [[]];
     tileIndex= 0;
 
-    background[layer]=[];
+    tiles[layer]=[];
     for(i=0;i<15;i++){
-      background[i]=[];
+      tiles[i]=[];
       for(j=0;j<20;j++){
         tileData = this.mapData["layers"][layer]["data"][tileIndex];
-        background[i][j] = tileData;
+        tiles[i][j] = tileData;
         tileIndex++;
       }
     }
-    return background;
+    return tiles;
   };
 
   this.tilePositionFromIndex = function(index){

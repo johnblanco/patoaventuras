@@ -32,10 +32,7 @@ function drawMenu() {
 
 function drawPlaying() {
   clear();
-
   map.draw(new Vector(0,0));
-  //aca abajo iria: player.draw();
-
 }
 
 function update() {
