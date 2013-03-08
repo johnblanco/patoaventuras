@@ -2,6 +2,7 @@
 //jquery local: jquery-1.7.2.js
 
 var timer;
+var cameraPosition = new Vector(0,0);
 
 function rectanglesCollide(pos1, width1, height1, pos2, width2, height2) {
   left1 = pos1.x;
@@ -32,7 +33,7 @@ function drawMenu() {
 
 function drawPlaying() {
   clear();
-  map.draw(new Vector(0,0));
+  map.draw(cameraPosition);
 }
 
 function update() {
@@ -56,10 +57,10 @@ function initGame() {
   gamePaused = false;
   gameStatus = "menu";
   tileset = new Image();
-  tileset.src="tileset.png";
+  tileset.src="tileset_exp.gif";
 
 
-  $.getJSON('map_0.json',function(data){
+  $.getJSON('map_1.json',function(data){
     map = new Map(data);
     tileset.onload = function(){
       timer = setInterval(update, 30);
