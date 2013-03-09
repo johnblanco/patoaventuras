@@ -3,6 +3,7 @@ Map = function(mapData){
   this.mapSize = new Vector(40,100);
   this.viewSize = new Vector(20,15);
   this.tileSize = 32;
+  this.tilesPerRow=4; //cantidad de cuadrados por fila en el tileset
 
   this.draw= function(cameraPosition){
     //background = this.layerTiles(cameraPosition, 0);
@@ -42,7 +43,6 @@ Map = function(mapData){
 
     tileIndex= this.indexFromTilePosition(cameraPosition);
 
-    tiles[layer]=[];
     for(i=0;i<this.viewSize.y;i++){
       tiles[i]=[];
       for(j=0;j<this.viewSize.x;j++){
@@ -60,8 +60,8 @@ Map = function(mapData){
 
   this.tilePositionFromIndex = function(index){
     sourcePosition = new Vector(0,0);
-    row = Math.floor(index/40);
-    column = (index % 40) -1;
+    row = Math.floor((index-1)/this.tilesPerRow);
+    column = ((index-1) % this.tilesPerRow); // puede ser 0,1,2,3
 
     sourcePosition.x = column * this.tileSize;
     sourcePosition.y = row * this.tileSize;
