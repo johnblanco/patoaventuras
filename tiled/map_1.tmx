@@ -3,14 +3,14 @@
  <tileset firstgid="1" name="tileset_exp" tilewidth="32" tileheight="32">
   <image source="tileset_exp.gif" width="128" height="64"/>
  </tileset>
- <layer name="background" width="40" height="100" visible="0">
+ <layer name="background" width="40" height="100">
   <data encoding="base64" compression="zlib">
    eJztwwEJAAAMBKGD7995Qabgqqmqqqqqqqqqqqqqqqqqqvr+AcoXLuE=
   </data>
  </layer>
  <layer name="objects" width="40" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1tEKgyAYBeA22tj7P/FuJvxEauqSNr4PzqV/JytpWa7v0ZHZ/W4Nif2em5Su0Xvvo/3un9T6tc6u3Vu8dkzs0bJ/vf1yjvQ7aqTfayc9/fbmpIz2W0PSzJ5+ayY97/ZIv9w+ndWv5fnmOpQy0i/nF/ptz7eUmc+3JH53tbWz+6VzOq4trT/rfCn1G93/0iz92mZ9+9/tCv9+AAAAAAAAAAAAAAAA8M/egQoFcQ==
+   eJzt10EKgzAQQFErtvT+J+5KEMloMonWxVs8cBP9RB10nqZpfrh3wt19rwbbvs/OiD0Y3Vc6zl4j6iuJrrdvqt2/bF+kpm/0M1Tq+xZk+krnWfX2LRvrOTN9SyDzbPf0Rft0VV/L/Y0ajvT0tb4fT+qLZsmd97d2LpytvbtvndPbtUfrr5ovLTM1+22gr79v9LfbyL4r6NOn77jv3/9uAAAAAAAAAAAAAADAuR8dpSGJ
   </data>
  </layer>
 </map>

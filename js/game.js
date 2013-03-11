@@ -36,6 +36,17 @@ function drawPlaying() {
   map.draw(cameraPosition);
 }
 
+function updateCamera(){
+  if(keyboardState.downDown && cameraPosition.y < 15)
+    cameraPosition.y+=1;
+  if(keyboardState.upDown && cameraPosition.y > 0)
+    cameraPosition.y-=1;
+  if(keyboardState.rightDown && cameraPosition.x < 20)
+    cameraPosition.x+=1;
+  if(keyboardState.leftDown && cameraPosition.x > 0)
+    cameraPosition.x-=1;
+}
+
 function update() {
   switch (gameStatus) {
     case "menu":
@@ -44,9 +55,20 @@ function update() {
         gameStatus = "playing";
       break;
     case "playing":
+      updateCamera();
       drawPlaying();
+      debugInfo();
       break;
   }
+}
+
+function debugInfo(){
+  ctx.font = "8pt Arial";
+  ctx.fillStyle = "rgb(0,0,255)";
+
+  str = "camera: " + cameraPosition.x + ", " + cameraPosition.y;
+
+  ctx.fillText(str, 5, 15);
 }
 
 function initGame() {

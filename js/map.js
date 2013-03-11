@@ -6,14 +6,13 @@ Map = function(mapData){
   this.tilesPerRow=4; //cantidad de cuadrados por fila en el tileset
 
   this.draw= function(cameraPosition){
-    //background = this.layerTiles(cameraPosition, 0);
+    background = this.layerTiles(cameraPosition, 0);
     objects = this.layerTiles(cameraPosition, 1);
 
     //TODO: por que no esta dibujando una cosa sobre la otra?
 
+    this.drawLayer(background);
     this.drawLayer(objects);
-//    this.drawLayer(background);
-
   };
 
   this.drawLayer = function(tiles){
@@ -33,13 +32,7 @@ Map = function(mapData){
   };
 
   this.layerTiles = function(cameraPosition, layer){
-    //obtengo los cuadrados del mapa que corresponden a la posicion de la camara
-    //y los coloco en una matriz de 20x15
-
-    //eureka! el ancho de la superficie visible es 20, el ancho de la tira es 40!!!
     tiles = [[]];
-
-    //TODO: aca hay un bug en la segunda fila
 
     tileIndex= this.indexFromTilePosition(cameraPosition);
 
@@ -49,7 +42,7 @@ Map = function(mapData){
         tiles[i][j] = this.mapData["layers"][layer]["data"][tileIndex];
         tileIndex++;
       }
-      tileIndex+=this.viewSize.x + cameraPosition.x;
+      tileIndex+=this.viewSize.x;
     }
     return tiles;
   };
