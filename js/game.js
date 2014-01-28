@@ -82,9 +82,9 @@ function initGame() {
   tileset.src="tileset_exp.gif";
 
 
-  $.getJSON('map_1.json',function(data){
+  $.getJSON('map_1.json',function(data){//cargo el mapa
     map = new Map(data);
-    tileset.onload = function(){
+    tileset.onload = function(){//cago el png que tiene todos los tiles
       timer = setInterval(update, 30);
     };
   });

@@ -1,7 +1,10 @@
 Patoaventuras
 ==============
 
-Mi primer juego de aventura
+Mi primer juego de aventura.
+
+Para correr se puede usar un server http liviano como mongoose (http://cesanta.com/downloads.html)
+
 
 Features
 --------
